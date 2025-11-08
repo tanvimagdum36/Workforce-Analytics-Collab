@@ -68,3 +68,14 @@ def show_role_badge():
     """Show logged-in user and role in sidebar"""
     if st.session_state.get("username") and st.session_state.get("role"):
         st.sidebar.info(f"👤 Logged in as: **{st.session_state['username'].title()} ({st.session_state['role']})**")
+
+# -------------------------
+# Verify User Function
+def verify_user(username: str, password: str):
+    """
+    Verify username and password from the USERS dictionary.
+    Returns the user's role if valid, otherwise None.
+    """
+    if username in USERS and password == USERS[username]["password"]:
+        return USERS[username]["role"]
+    return None
